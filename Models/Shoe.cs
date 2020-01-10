@@ -7,10 +7,9 @@ namespace WebbShop_API.Models
   public class Shoe
   {
     public int Id { get; set; }
-    [Required]
+    // [Required]
     public string Name { get; set; }
-    public string Brand { get; set; }
-    [Column(TypeName = "decimal(18, 2)")]
+    // [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
     public string Product_Description { get; set; }
     public string Image { get; set; }

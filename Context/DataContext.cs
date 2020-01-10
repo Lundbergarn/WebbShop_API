@@ -33,6 +33,15 @@ namespace WebbShop_API.Contexts
         Phone = "9739874",
         Address = "vattholvaägen 5c"
       });
+      modelBuilder.Entity<Customer>().HasData(new Customer
+      {
+        Id = 2,
+        Email = "sara@hotmail.com",
+        Password = "password",
+        Name = "Sara Larsson",
+        Phone = "9739874",
+        Address = "vattholvaägen 5c"
+      });
 
       modelBuilder.Entity<Order>().HasData(new Order
       {
@@ -41,18 +50,76 @@ namespace WebbShop_API.Contexts
         CustomerId = 1,
       });
 
+      // Order Row 1
       modelBuilder.Entity<Order_Rows>().HasData(new Order_Rows
       {
         Id = 1,
         Qty = 2,
         OrderId = 1,
       });
-
       modelBuilder.Entity<Shoe>().HasData(new Shoe
       {
         Id = 1,
-        Brand = "Nike",
+        Image = "Image URL",
+        Name = "Silver Deluxe",
+        Order_RowsId = 1,
+        Price = 112,
+        Product_Description = "LIte text om skon",
       });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 1,
+        Order_RowsId = 1,
+        Color_Description = "White"
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 1,
+        Order_RowsId = 1,
+        Size_Description = 43
+      });
+      modelBuilder.Entity<Brand>().HasData(new Brand
+      {
+        Id = 1,
+        ShoeId = 1,
+        Name = "Nike"
+      });
+
+      // Order Row 2
+      modelBuilder.Entity<Order_Rows>().HasData(new Order_Rows
+      {
+        Id = 2,
+        Qty = 1,
+        OrderId = 1,
+      });
+      modelBuilder.Entity<Shoe>().HasData(new Shoe
+      {
+        Id = 2,
+        Image = "Image URL",
+        Name = "Black panter",
+        Order_RowsId = 2,
+        Price = 112,
+        Product_Description = "LIte text om skon",
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 2,
+        Order_RowsId = 2,
+        Color_Description = "Black"
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 2,
+        Order_RowsId = 2,
+        Size_Description = 38
+      });
+      modelBuilder.Entity<Brand>().HasData(new Brand
+      {
+        Id = 2,
+        ShoeId = 2,
+        Name = "Puma"
+      });
+
     }
 
   }

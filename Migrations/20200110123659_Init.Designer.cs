@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebbShop_API.Contexts;
 
 namespace WebbShop_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200110123659_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,15 +111,6 @@ namespace WebbShop_API.Migrations
                             Address = "vattholvaägen 5c",
                             Email = "lundbergarn2@hotmail.com",
                             Name = "Christoffer Lundberg",
-                            Password = "password",
-                            Phone = "9739874"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "vattholvaägen 5c",
-                            Email = "sara@hotmail.com",
-                            Name = "Sara Larsson",
                             Password = "password",
                             Phone = "9739874"
                         });
