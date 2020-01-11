@@ -26,7 +26,14 @@ namespace WebbShop_API.Data
     {
       var customer = await _context.Customers
         .Include(o => o.Order)
-        .ThenInclude(o => o.Order_Rows)
+          .ThenInclude(o => o.Order_Rows)
+        .ThenInclude(or => or.Shoe)
+        // .Include(o => o.Order)
+        //   .ThenInclude(o => o.Order_Rows)
+        //     .ThenInclude(or => or.Color)
+        // .Include(o => o.Order)
+        //   .ThenInclude(o => o.Order_Rows)
+        //     .ThenInclude(or => or.Size)
         .FirstOrDefaultAsync(b => b.Id == id);
 
       return customer;

@@ -9,12 +9,10 @@ namespace WebbShop_API.Models
     public int Id { get; set; }
     // [Required]
     public string Name { get; set; }
+    public string Brand { get; set; }
     // [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
     public string Product_Description { get; set; }
-    public string Image { get; set; }
-    public int Order_RowsId { get; set; }
-    [JsonIgnore]
-    public Order_Rows Order_Rows { get; set; }
+    public string Image_Url { get; set; }
   }
 }

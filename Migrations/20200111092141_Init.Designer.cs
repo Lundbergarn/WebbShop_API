@@ -9,7 +9,7 @@ using WebbShop_API.Contexts;
 namespace WebbShop_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200110123659_Init")]
+    [Migration("20200111092141_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,28 +38,6 @@ namespace WebbShop_API.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("WebbShop_API.Models.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ShoeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("URL")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShoeId");
-
-                    b.ToTable("Brands");
-                });
-
             modelBuilder.Entity("WebbShop_API.Models.Color", b =>
                 {
                     b.Property<int>("Id")
@@ -69,12 +47,7 @@ namespace WebbShop_API.Migrations
                     b.Property<string>("Color_Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Order_RowsId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("Order_RowsId");
 
                     b.ToTable("Colors");
                 });
@@ -91,7 +64,10 @@ namespace WebbShop_API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("First_Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Last_Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
@@ -110,7 +86,18 @@ namespace WebbShop_API.Migrations
                             Id = 1,
                             Address = "vattholvaägen 5c",
                             Email = "lundbergarn2@hotmail.com",
-                            Name = "Christoffer Lundberg",
+                            First_Name = "Christoffer",
+                            Last_Name = "Lundberg",
+                            Password = "password",
+                            Phone = "9739874"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "vattholvaägen 5c",
+                            Email = "sara@hotmail.com",
+                            First_Name = "Sara",
+                            Last_Name = "Larsson",
                             Password = "password",
                             Phone = "9739874"
                         });
@@ -139,7 +126,13 @@ namespace WebbShop_API.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            Order_Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Order_Date = new DateTime(2020, 1, 11, 10, 21, 40, 806, DateTimeKind.Local).AddTicks(761)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            Order_Date = new DateTime(2020, 1, 11, 10, 21, 40, 812, DateTimeKind.Local).AddTicks(5198)
                         });
                 });
 
@@ -155,9 +148,14 @@ namespace WebbShop_API.Migrations
                     b.Property<int>("Qty")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ShoeId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ShoeId");
 
                     b.ToTable("Order_Rows");
 
@@ -166,7 +164,15 @@ namespace WebbShop_API.Migrations
                         {
                             Id = 1,
                             OrderId = 1,
-                            Qty = 2
+                            Qty = 1,
+                            ShoeId = 111
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OrderId = 2,
+                            Qty = 1,
+                            ShoeId = 111
                         });
                 });
 
@@ -179,14 +185,11 @@ namespace WebbShop_API.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Image_Url")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Order_RowsId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
@@ -196,20 +199,17 @@ namespace WebbShop_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Order_RowsId");
-
                     b.ToTable("Shoes");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 111,
                             Brand = "Nike",
-                            Image = "Image URL",
+                            Image_Url = "Image URL",
                             Name = "Silver Deluxe",
-                            Order_RowsId = 1,
-                            Price = 112m,
-                            Product_Description = "LIte text om skon"
+                            Price = 100m,
+                            Product_Description = "Lorem Ipsum Dolar"
                         });
                 });
 
@@ -219,15 +219,10 @@ namespace WebbShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Order_RowsId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<decimal>("Size_Description")
                         .HasColumnType("decimal(4, 1)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Order_RowsId");
 
                     b.ToTable("Sizes");
                 });
@@ -246,24 +241,6 @@ namespace WebbShop_API.Migrations
                     b.ToTable("Values");
                 });
 
-            modelBuilder.Entity("WebbShop_API.Models.Brand", b =>
-                {
-                    b.HasOne("WebbShop_API.Models.Shoe", "Shoe")
-                        .WithMany()
-                        .HasForeignKey("ShoeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WebbShop_API.Models.Color", b =>
-                {
-                    b.HasOne("WebbShop_API.Models.Order_Rows", "Order_Rows")
-                        .WithMany()
-                        .HasForeignKey("Order_RowsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WebbShop_API.Models.Order", b =>
                 {
                     b.HasOne("WebbShop_API.Models.Customer", "Customer")
@@ -280,22 +257,10 @@ namespace WebbShop_API.Migrations
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("WebbShop_API.Models.Shoe", b =>
-                {
-                    b.HasOne("WebbShop_API.Models.Order_Rows", "Order_Rows")
+                    b.HasOne("WebbShop_API.Models.Shoe", "Shoe")
                         .WithMany()
-                        .HasForeignKey("Order_RowsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WebbShop_API.Models.Size", b =>
-                {
-                    b.HasOne("WebbShop_API.Models.Order_Rows", "Order_Rows")
-                        .WithMany()
-                        .HasForeignKey("Order_RowsId")
+                        .HasForeignKey("ShoeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

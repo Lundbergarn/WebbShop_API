@@ -30,9 +30,10 @@ namespace WebbShop_API.Controllers
       return Ok(blog);
     }
 
+
     // POST api/blogs
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Customer newBlog)
+    public async Task<IActionResult> PostCustomer([FromBody] Customer newBlog)
     {
       _repo.Add(newBlog);
 
@@ -63,7 +64,7 @@ namespace WebbShop_API.Controllers
 
       if (response)
       {
-        return Ok("Removed blog " + blogToRemove.Name);
+        return Ok("Removed blog " + blogToRemove.First_Name);
       }
 
       return NotFound();
