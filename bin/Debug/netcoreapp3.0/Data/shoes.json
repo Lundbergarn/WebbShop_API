@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "111",
+    "Name": "Nike Air Zoom Pegasus 36",
+    "Brand": "Nike",
+    "Price": 1299,
+    "Product_Description": "Löparskor för ett neutralt löpsteg. Utrustade med Zoom Air i fullängd för responsiv stötdämpning som ger extra skjuts i steget.",
+    "Image_Url": "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/282111_101_NIKE_NIKE%20AIR%20ZOOM%20PEGASUS%2036.png"
+  },
+  {
+    "Id": "112",
+    "Name": "M Gel-Pulse 11",
+    "Brand": "ASICS",
+    "Price": 1099,
+    "Product_Description": "GEL-Pulse 11 från Asics är lätta löparskor för ett neutralt löpsteg. De passar för långdistanslöpning och är utformade för dig som föredrar att träna på landsväg. Skorna är designade med stötdämpande GEL i hälen för mjukare känsla, och är även försedda med Guidance Line-teknologi som hjälper foten hela vägen från hälisättning till frånskjut för en mer effektiv löpstil.",
+    "Image_Url": "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284449_101_ASICS_M%20GEL-PULSE%2011.png"
+  },
+  {
+    "Id": "113",
+    "Name": "M Aduro 6",
+    "Brand": "BROKS",
+    "Price": 999,
+    "Product_Description": "Löparskor för ett neutralt löpsteg. Utrustade med BioMoGo DNA-dämpning som anpassar sig efter din hastighet och vikt för maximal effekt. De har också Segmented Crash Pad som ger ytterligare stötdämpning och en jämnare övergång från häl till tå. Skorna är även utrustade med stödjande ovandel i ventilerande mesh samt med flexibelt framfotsparti och med reflexdetaljer för ökad synlighet.",
+    "Image_Url": "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/276629_101_BROOKS_M%20ADURO%206.png"
+  }
+]

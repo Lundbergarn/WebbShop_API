@@ -73,70 +73,45 @@ namespace WebbShop_API.Contexts
         ShoeId = 111,
         OrderId = 2
       });
-
+      // Order Row 3
+      modelBuilder.Entity<Order_Rows>().HasData(new Order_Rows
+      {
+        Id = 3,
+        Qty = 1,
+        ShoeId = 113,
+        OrderId = 1
+      });
 
       modelBuilder.Entity<Shoe>().HasData(new Shoe
       {
         Id = 111,
-        Name = "Silver Deluxe",
+        Name = "Nike Air Zoom Pegasus 36",
         Brand = "Nike",
-        Price = 100,
-        Product_Description = "Lorem Ipsum Dolar",
-        Image_Url = "Image URL",
+        Price = 1299,
+        Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med Zoom Air i fullängd för responsiv stötdämpning som ger extra skjuts i steget.",
+        Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/282111_101_NIKE_NIKE%20AIR%20ZOOM%20PEGASUS%2036.png",
+      });
+
+      modelBuilder.Entity<Shoe>().HasData(new Shoe
+      {
+        Id = 112,
+        Name = "M Gel-Pulse 11",
+        Brand = "ASICS",
+        Price = 1099,
+        Product_Description = "GEL-Pulse 11 från Asics är lätta löparskor för ett neutralt löpsteg. De passar för långdistanslöpning och är utformade för dig som föredrar att träna på landsväg. Skorna är designade med stötdämpande GEL i hälen för mjukare känsla, och är även försedda med Guidance Line-teknologi som hjälper foten hela vägen från hälisättning till frånskjut för en mer effektiv löpstil.",
+        Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284449_101_ASICS_M%20GEL-PULSE%2011.png",
       });
 
 
-      // Order Row 2
-      // modelBuilder.Entity<Order_Rows>().HasData(new Order_Rows
-      // {
-      //   Id = 2,
-      //   Qty = 1,
-      //   ShoeId = 222,
-      //   OrderId = 1,
-      // });
-      // modelBuilder.Entity<Shoe>().HasData(new Shoe
-      // {
-      //   Id = 222,
-      //   Image = "Image URL",
-      //   Name = "Black panter",
-      //   Brand = "Puma",
-      //   Price = 112,
-      //   Product_Description = "Lite text om skon",
-      //   Order_RowsId = 2
-      // });
-      // modelBuilder.Entity<Color>().HasData(new Color
-      // {
-      //   Id = 2,
-      //   Order_RowsId = 2,
-      //   Color_Description = "Black"
-      // });
-      // modelBuilder.Entity<Size>().HasData(new Size
-      // {
-      //   Id = 2,
-      //   Order_RowsId = 2,
-      //   Size_Description = 38
-      // });
-
-      // modelBuilder.Entity<Order_Rows>().HasData(new Order_Rows
-      // {
-      //   Id = 3,
-      //   Qty = 2,
-      //   ShoeId = 333,
-      //   OrderId = 1,
-      // });
-      // modelBuilder.Entity<Shoe>().HasData(new Shoe
-      // {
-      //   Id = 333,
-      //   Image = "Image URL",
-      //   Name = "Golden Shoe",
-      //   Brand = "Adidas",
-      //   Price = 199,
-      //   Product_Description = "Lorem Ipsum Dolar",
-      //   Order_RowsId = 3
-      // });
-
-
+      modelBuilder.Entity<Shoe>().HasData(new Shoe
+      {
+        Id = 113,
+        Name = "M Aduro 6",
+        Brand = "BROKS",
+        Price = 999,
+        Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med BioMoGo DNA-dämpning som anpassar sig efter din hastighet och vikt för maximal effekt. De har också Segmented Crash Pad som ger ytterligare stötdämpning och en jämnare övergång från häl till tå. Skorna är även utrustade med stödjande ovandel i ventilerande mesh samt med flexibelt framfotsparti och med reflexdetaljer för ökad synlighet.",
+        Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/276629_101_BROOKS_M%20ADURO%206.png"
+      });
     }
-
   }
 }

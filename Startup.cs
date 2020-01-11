@@ -22,6 +22,7 @@ namespace WebbShop.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddScoped<ICustomerRepository, CustomerRepository>();
+      services.AddScoped<IAdminRepository, AdminRepository>();
 
       services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=webbshop.db"));
 
