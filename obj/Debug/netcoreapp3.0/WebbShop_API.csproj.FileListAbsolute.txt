@@ -42,3 +42,11 @@ C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_
 C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\obj\Debug\netcoreapp3.0\WebbShop_API.dll
 C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\obj\Debug\netcoreapp3.0\WebbShop_API.pdb
 C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Data\shoes.json
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\Lundb\Documents\Front End Utbildning\Backend\Projekt_WebbShop\WebbShop_API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
