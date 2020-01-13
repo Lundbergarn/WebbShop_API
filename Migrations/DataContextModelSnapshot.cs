@@ -22,14 +22,14 @@ namespace WebbShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -124,13 +124,13 @@ namespace WebbShop_API.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            Order_Date = new DateTime(2020, 1, 11, 18, 0, 15, 236, DateTimeKind.Local).AddTicks(4194)
+                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 859, DateTimeKind.Local).AddTicks(8775)
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 2,
-                            Order_Date = new DateTime(2020, 1, 11, 18, 0, 15, 239, DateTimeKind.Local).AddTicks(5397)
+                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 862, DateTimeKind.Local).AddTicks(9102)
                         });
                 });
 

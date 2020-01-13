@@ -30,25 +30,41 @@ namespace WebbShop.API
       services.AddDbContext<WebbShop_API.Contexts.DataContext>(options => options.UseSqlite("Data Source=webbshop.db"));
       services.AddControllers();
       services.AddCors();
-      services.AddScoped<IShoesRepository, ShoesRepository>();
-      services.AddScoped<ICustomerRepository, CustomerRepository>();
       services.AddScoped<IAdminRepository, AdminRepository>();
-      services.AddScoped<IAuthRepository, AuthRepository>();
+      services.AddScoped<ICustomerRepository, CustomerRepository>();
+      services.AddScoped<IShoesRepository, ShoesRepository>();
 
       // services.AddDbContext<DataContext>(x => x.UseSqlite
       // (Configuration.GetConnectionString("DefaultConnection")));
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
+      services.AddScoped<IAuthRepository, AuthRepository>();
+      // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      //   .AddJwtBearer(options =>
+      //   {
+      //     options.TokenValidationParameters = new TokenValidationParameters
+      //     {
+      //       ValidateIssuerSigningKey = true,
+      //       IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+      //         .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+      //       ValidateIssuer = false,
+      //       ValidateAudience = false
+      //     };
+      //   });
+      services.AddAuthentication(options =>
+      {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      }).AddJwtBearer(jwtBearerOptions =>
+      {
+        jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
         {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
-              .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-            ValidateIssuer = false,
-            ValidateAudience = false
-          };
-        });
+          ValidateIssuer = false,
+          ValidateAudience = false,
+          ValidateLifetime = false,
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings:Token").Value))
+        };
+      });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +100,8 @@ namespace WebbShop.API
       // No CORS error when fetching data
       app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+      //Enable Authentication
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>

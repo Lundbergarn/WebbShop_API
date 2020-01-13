@@ -16,7 +16,7 @@ namespace WebbShop_API.Data
     }
     public async Task<Admin> Login(string username, string password)
     {
-      var user = await _context.Admins.FirstOrDefaultAsync(x => x.Name == username); //will return matching username or null if no match
+      var user = await _context.Admins.FirstOrDefaultAsync(x => x.UserName == username); //will return matching username or null if no match
 
       if (username == null)
         return null;
@@ -39,8 +39,6 @@ namespace WebbShop_API.Data
       }
       return true;
     }
-
-
 
     public async Task<Admin> Register(Admin user, string password)
     {
@@ -68,7 +66,7 @@ namespace WebbShop_API.Data
 
     public async Task<bool> UserExists(string username)
     {
-      if (await _context.Admins.AnyAsync(x => x.Name == username)) // compare this username against all other usernames
+      if (await _context.Admins.AnyAsync(x => x.UserName == username)) // compare this username against all other usernames
         return true;
 
       return false;

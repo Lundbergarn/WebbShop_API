@@ -9,7 +9,7 @@ using WebbShop_API.Contexts;
 namespace WebbShop_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200111135750_Init")]
+    [Migration("20200113165817_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,14 +24,14 @@ namespace WebbShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -126,13 +126,13 @@ namespace WebbShop_API.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            Order_Date = new DateTime(2020, 1, 11, 14, 57, 50, 341, DateTimeKind.Local).AddTicks(711)
+                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 859, DateTimeKind.Local).AddTicks(8775)
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 2,
-                            Order_Date = new DateTime(2020, 1, 11, 14, 57, 50, 344, DateTimeKind.Local).AddTicks(1521)
+                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 862, DateTimeKind.Local).AddTicks(9102)
                         });
                 });
 
@@ -235,6 +235,60 @@ namespace WebbShop_API.Migrations
                             Name = "M Aduro 6",
                             Price = 999m,
                             Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med BioMoGo DNA-dämpning som anpassar sig efter din hastighet och vikt för maximal effekt. De har också Segmented Crash Pad som ger ytterligare stötdämpning och en jämnare övergång från häl till tå. Skorna är även utrustade med stödjande ovandel i ventilerande mesh samt med flexibelt framfotsparti och med reflexdetaljer för ökad synlighet."
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Brand = "Nike",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/282111_110_NIKE_NIKE%20AIR%20ZOOM%20PEGASUS%2036.png",
+                            Name = "Nike Air Zoom Pegasus 36",
+                            Price = 799m,
+                            Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med Zoom Air i fullängd för responsiv stötdämpning som ger extra skjuts i steget."
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Brand = "Nike",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/282111_108_NIKE_NIKE%20AIR%20ZOOM%20PEGASUS%2036.png",
+                            Name = "Nike Air Zoom Pegasus 36",
+                            Price = 1299m,
+                            Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med Zoom Air i fullängd för responsiv stötdämpning som ger extra skjuts i steget."
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Brand = "Adidas",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284541_101_ADIDAS_M%20SENSEBOOST%20GO.png",
+                            Name = "M Senseboost Go",
+                            Price = 899m,
+                            Product_Description = "Senseboost Go är bekväma löparskor för ett neutralt löpsteg. Designade med stretchig stickad ovandel som andas och som formar sig efter fotens rörelser när du springer. De har även mellansula i Boost-foam för responsiv stötdämpning som ger extra skjuts i steget. Skorna har en tajt passform och är konstruerade med ett särskilt stöd över mellanfoten, samt har en bred plattform som ger extra stöd vid sidoförflyttningar. Skornas Stretchweb-yttersula böjer sig naturligt under foten för ännu mera respons."
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Brand = "Adidas",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284351_105_ADIDAS_M%20ULTRABOOST%2019.png",
+                            Name = "M Ultraboost 19",
+                            Price = 1799m,
+                            Product_Description = "Ultraboost 19 är löparskor för ett neutralt löpsteg. Skorna har en stretchig stickad ovandel som formar sig efter foten och som har få sömmar för att minimera risken för skav. De har även mellansula i Boost-foam för responsiv stötdämpning som ger extra skjuts i steget, samt en formgjuten hälkopp som ger en naturlig passform och optimal rörelse vid hälen. Skornas Stretchweb-yttersula böjer sig naturligt under foten för ännu mera respons, och är gjord i Continental-gummi som ger bra grepp på både vått och torrt underlag. Skornas drop (höjdskillnad mellan häl och tå) på 10 mm placerar kroppen i en bättre balanserad och mer bekväm position under hela steget."
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Brand = "Nike",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/282111_111_NIKE_NIKE%20AIR%20ZOOM%20PEGASUS%2036.png",
+                            Name = "Nike Air Zoom Pegasus 36",
+                            Price = 1399m,
+                            Product_Description = "Löparskor för ett neutralt löpsteg. Utrustade med Zoom Air i fullängd för responsiv stötdämpning som ger extra skjuts i steget."
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Brand = "ASICS",
+                            Image_Url = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284454_101_ASICS_M%20ROADHAWK%20FF%202%20SHINE.png",
+                            Name = "M Roadhawk Ff 2 Shine",
+                            Price = 849m,
+                            Product_Description = "Lätta löparskor för ett neutralt löpsteg. Shine-versionen av Roadhawk FF 2 är utrustad med extra många reflekterande detaljer för att du ska synas bättre under löprundor i mörker. Skorna är även försedda med Asics nya mellansula FlyteFoam Propel som ger responsiv stötdämpning för extra skjuts i steget. Modellen har också sömlös och ventilerande ovandel som formar sig efter foten för bra komfort och stabil passform. Skornas drop (höjdskillnad mellan häl och tå) på 10 mm placerar kroppen i en bättre balanserad och mer bekväm position under hela steget."
                         });
                 });
 

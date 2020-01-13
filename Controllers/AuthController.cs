@@ -36,7 +36,7 @@ namespace WebbShop_API.Controllers
 
       var userToCreate = new Admin
       {
-        Name = userForRegisterDto.Username
+        UserName = userForRegisterDto.Username
       };
 
       var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
@@ -48,7 +48,7 @@ namespace WebbShop_API.Controllers
     public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
     {
 
-      var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password); // checks if user is valid in Db
+      var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password); // checks if user is valid in Db
 
       if (userFromRepo == null)
         return Unauthorized(); //created unauthorized incase someone has another users userame but wrong password
@@ -56,7 +56,7 @@ namespace WebbShop_API.Controllers
       var claims = new[] // security for name id and username
       {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Name)
+                new Claim(ClaimTypes.Name, userFromRepo.UserName)
             };
 
       var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
