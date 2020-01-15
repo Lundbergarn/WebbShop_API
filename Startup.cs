@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebbShop_API.Helpers;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebbShop.API
 {
@@ -28,7 +30,11 @@ namespace WebbShop.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<WebbShop_API.Contexts.DataContext>(options => options.UseSqlite("Data Source=webbshop.db"));
-      services.AddControllers();
+      services.AddControllers().AddNewtonsoftJson(opt =>
+      {
+        opt.SerializerSettings.ReferenceLoopHandling =
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+      });
       services.AddCors();
       services.AddScoped<IAdminRepository, AdminRepository>();
       services.AddScoped<ICustomerRepository, CustomerRepository>();
