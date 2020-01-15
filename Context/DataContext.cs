@@ -7,7 +7,7 @@ namespace WebbShop_API.Contexts
   public class DataContext : DbContext
   {
 
-    public DbSet<Admin> Admins { get; set; }
+    // public DbSet<Admin> Admins { get; set; }
     public DbSet<Color> Colors { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order_Rows> Order_Rows { get; set; }
@@ -21,27 +21,57 @@ namespace WebbShop_API.Contexts
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
 
+    private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+    {
+      using (var hmac = new System.Security.Cryptography.HMACSHA512()) //HMAC uses hash based message
+      {
+        passwordSalt = hmac.Key; /// setting password salt to the randomly generated key
+        passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)); // gets password as a byte array
+      }
+
+    }
+
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      byte[] passwordHash, passwordSalt;
+      CreatePasswordHash("password", out passwordHash, out passwordSalt);
+
+      // modelBuilder.Entity<Admin>().HasData(new Admin
+      // {
+      //   Id = 11111,
+      //   UserName = "admins",
+      //   Role = "Admin",
+      //   PasswordHash = passwordHash,
+      //   PasswordSalt = passwordSalt
+      // });
+
       modelBuilder.Entity<Customer>().HasData(new Customer
       {
         Id = 1,
         Email = "lundbergarn2@hotmail.com",
-        Password = "password",
-        First_Name = "Christoffer",
-        Last_Name = "Lundberg",
+        UserName = "lundberg",
+        FirstName = "Christoffer",
+        LastName = "Lundberg",
         Phone = "9739874",
-        Address = "vattholvaägen 5c"
+        Address = "vattholvaägen 5c",
+        Role = "Customer",
+        PasswordHash = passwordHash,
+        PasswordSalt = passwordSalt
       });
       modelBuilder.Entity<Customer>().HasData(new Customer
       {
         Id = 2,
         Email = "sara@hotmail.com",
-        Password = "password",
-        First_Name = "Sara",
-        Last_Name = "Larsson",
+        UserName = "sara",
+        FirstName = "Sara",
+        LastName = "Larsson",
         Phone = "9739874",
-        Address = "vattholvaägen 5c"
+        Address = "vattholvaägen 5c",
+        Role = "Customer",
+        PasswordHash = passwordHash,
+        PasswordSalt = passwordSalt
       });
 
       modelBuilder.Entity<Order>().HasData(new Order

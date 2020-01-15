@@ -34,21 +34,13 @@ namespace WebbShop.API
       services.AddScoped<ICustomerRepository, CustomerRepository>();
       services.AddScoped<IShoesRepository, ShoesRepository>();
 
-      // services.AddDbContext<DataContext>(x => x.UseSqlite
-      // (Configuration.GetConnectionString("DefaultConnection")));
       services.AddScoped<IAuthRepository, AuthRepository>();
-      // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      //   .AddJwtBearer(options =>
-      //   {
-      //     options.TokenValidationParameters = new TokenValidationParameters
-      //     {
-      //       ValidateIssuerSigningKey = true,
-      //       IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
-      //         .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-      //       ValidateIssuer = false,
-      //       ValidateAudience = false
-      //     };
-      //   });
+
+      services.AddAuthorization(options =>
+      {
+        options.AddPolicy("RequireCustomerRole", policy => policy.RequireRole("Customer"));
+      });
+
       services.AddAuthentication(options =>
       {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

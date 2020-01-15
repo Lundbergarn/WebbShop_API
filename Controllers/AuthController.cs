@@ -12,7 +12,7 @@ using WebbShop_API.Models;
 
 namespace WebbShop_API.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/customer/[controller]")]
   [ApiController]
 
   public class AuthController : ControllerBase
@@ -34,7 +34,7 @@ namespace WebbShop_API.Controllers
       if (await _repo.UserExists(userForRegisterDto.Username)) // checks if username exists
         return BadRequest("Username already exists");
 
-      var userToCreate = new Admin
+      var userToCreate = new Customer
       {
         UserName = userForRegisterDto.Username
       };
@@ -56,7 +56,8 @@ namespace WebbShop_API.Controllers
       var claims = new[] // security for name id and username
       {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.UserName)
+                new Claim(ClaimTypes.Name, userFromRepo.UserName),
+                new Claim(ClaimTypes.Role, userFromRepo.Role)
             };
 
       var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

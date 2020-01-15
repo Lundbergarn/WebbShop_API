@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebbShop_API.Contexts;
 using WebbShop_API.Data;
@@ -14,9 +15,9 @@ namespace WebbShop_API.Data
     {
       _context = context;
     }
-    public async Task<Admin> Login(string username, string password)
+    public async Task<Customer> Login(string username, string password)
     {
-      var user = await _context.Admins.FirstOrDefaultAsync(x => x.UserName == username); //will return matching username or null if no match
+      var user = await _context.Customers.FirstOrDefaultAsync(x => x.UserName == username); //will return matching username or null if no match
 
       if (username == null)
         return null;
@@ -40,15 +41,16 @@ namespace WebbShop_API.Data
       return true;
     }
 
-    public async Task<Admin> Register(Admin user, string password)
+    public async Task<Customer> Register(Customer user, string password)
     {
       byte[] passwordHash, passwordSalt;
       CreatePasswordHash(password, out passwordHash, out passwordSalt); //using out to pass hash and salt as a reference and not a value
 
       user.PasswordHash = passwordHash;
       user.PasswordSalt = passwordSalt;
+      user.Role = Role.Customer;
 
-      await _context.Admins.AddAsync(user);
+      await _context.Customers.AddAsync(user);
       await _context.SaveChangesAsync(); //this saves changes back to the datbase
 
       return user;
@@ -66,7 +68,7 @@ namespace WebbShop_API.Data
 
     public async Task<bool> UserExists(string username)
     {
-      if (await _context.Admins.AnyAsync(x => x.UserName == username)) // compare this username against all other usernames
+      if (await _context.Customers.AnyAsync(x => x.UserName == username)) // compare this username against all other usernames
         return true;
 
       return false;

@@ -9,7 +9,7 @@ using WebbShop_API.Contexts;
 namespace WebbShop_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200113165817_Init")]
+    [Migration("20200114132408_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,26 +17,6 @@ namespace WebbShop_API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0");
-
-            modelBuilder.Entity("WebbShop_API.Models.Admin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("BLOB");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("BLOB");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Admins");
-                });
 
             modelBuilder.Entity("WebbShop_API.Models.Color", b =>
                 {
@@ -64,16 +44,25 @@ namespace WebbShop_API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("First_Name")
+                    b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Last_Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -86,20 +75,26 @@ namespace WebbShop_API.Migrations
                             Id = 1,
                             Address = "vattholvaägen 5c",
                             Email = "lundbergarn2@hotmail.com",
-                            First_Name = "Christoffer",
-                            Last_Name = "Lundberg",
-                            Password = "password",
-                            Phone = "9739874"
+                            FirstName = "Christoffer",
+                            LastName = "Lundberg",
+                            PasswordHash = new byte[] { 46, 96, 15, 2, 176, 90, 63, 139, 19, 71, 121, 42, 251, 54, 49, 93, 235, 232, 255, 143, 6, 232, 172, 109, 39, 151, 247, 115, 116, 176, 71, 96, 117, 202, 84, 99, 105, 126, 12, 140, 207, 152, 105, 160, 117, 202, 99, 42, 122, 166, 105, 226, 154, 172, 30, 1, 212, 98, 58, 102, 159, 5, 214, 237 },
+                            PasswordSalt = new byte[] { 199, 110, 83, 95, 26, 98, 33, 202, 147, 125, 254, 12, 231, 120, 198, 112, 136, 68, 148, 238, 99, 98, 38, 63, 154, 107, 101, 166, 119, 115, 75, 61, 163, 244, 15, 251, 28, 107, 240, 95, 150, 231, 223, 219, 100, 134, 206, 226, 148, 163, 144, 238, 49, 214, 183, 126, 120, 169, 162, 195, 176, 227, 223, 150, 10, 146, 254, 8, 153, 229, 89, 112, 196, 15, 17, 145, 230, 77, 207, 171, 47, 2, 35, 244, 151, 101, 55, 90, 251, 9, 130, 41, 35, 142, 9, 54, 86, 74, 121, 181, 120, 88, 60, 184, 105, 55, 210, 65, 13, 117, 220, 139, 190, 166, 166, 18, 228, 161, 9, 108, 170, 118, 69, 69, 96, 103, 234, 216 },
+                            Phone = "9739874",
+                            Role = "Customer",
+                            UserName = "lundberg"
                         },
                         new
                         {
                             Id = 2,
                             Address = "vattholvaägen 5c",
                             Email = "sara@hotmail.com",
-                            First_Name = "Sara",
-                            Last_Name = "Larsson",
-                            Password = "password",
-                            Phone = "9739874"
+                            FirstName = "Sara",
+                            LastName = "Larsson",
+                            PasswordHash = new byte[] { 46, 96, 15, 2, 176, 90, 63, 139, 19, 71, 121, 42, 251, 54, 49, 93, 235, 232, 255, 143, 6, 232, 172, 109, 39, 151, 247, 115, 116, 176, 71, 96, 117, 202, 84, 99, 105, 126, 12, 140, 207, 152, 105, 160, 117, 202, 99, 42, 122, 166, 105, 226, 154, 172, 30, 1, 212, 98, 58, 102, 159, 5, 214, 237 },
+                            PasswordSalt = new byte[] { 199, 110, 83, 95, 26, 98, 33, 202, 147, 125, 254, 12, 231, 120, 198, 112, 136, 68, 148, 238, 99, 98, 38, 63, 154, 107, 101, 166, 119, 115, 75, 61, 163, 244, 15, 251, 28, 107, 240, 95, 150, 231, 223, 219, 100, 134, 206, 226, 148, 163, 144, 238, 49, 214, 183, 126, 120, 169, 162, 195, 176, 227, 223, 150, 10, 146, 254, 8, 153, 229, 89, 112, 196, 15, 17, 145, 230, 77, 207, 171, 47, 2, 35, 244, 151, 101, 55, 90, 251, 9, 130, 41, 35, 142, 9, 54, 86, 74, 121, 181, 120, 88, 60, 184, 105, 55, 210, 65, 13, 117, 220, 139, 190, 166, 166, 18, 228, 161, 9, 108, 170, 118, 69, 69, 96, 103, 234, 216 },
+                            Phone = "9739874",
+                            Role = "Customer",
+                            UserName = "sara"
                         });
                 });
 
@@ -126,13 +121,13 @@ namespace WebbShop_API.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 859, DateTimeKind.Local).AddTicks(8775)
+                            Order_Date = new DateTime(2020, 1, 14, 14, 24, 7, 706, DateTimeKind.Local).AddTicks(8721)
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 2,
-                            Order_Date = new DateTime(2020, 1, 13, 17, 58, 16, 862, DateTimeKind.Local).AddTicks(9102)
+                            Order_Date = new DateTime(2020, 1, 14, 14, 24, 7, 709, DateTimeKind.Local).AddTicks(9189)
                         });
                 });
 

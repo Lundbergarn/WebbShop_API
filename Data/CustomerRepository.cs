@@ -22,7 +22,7 @@ namespace WebbShop_API.Data
       _context.Remove(entity);
     }
 
-    public async Task<Customer> GetCustomer(int id)
+    public async Task<Customer> GetCustomer(string name)
     {
       var customer = await _context.Customers
         .Include(o => o.Order)
@@ -34,7 +34,7 @@ namespace WebbShop_API.Data
         // .Include(o => o.Order)
         //   .ThenInclude(o => o.Order_Rows)
         //     .ThenInclude(or => or.Size)
-        .FirstOrDefaultAsync(b => b.Id == id);
+        .FirstOrDefaultAsync(b => b.UserName == name);
 
       return customer;
     }

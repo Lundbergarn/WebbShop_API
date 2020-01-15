@@ -8,21 +8,6 @@ namespace WebbShop_API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Admins",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserName = table.Column<string>(nullable: true),
-                    PasswordHash = table.Column<byte[]>(nullable: true),
-                    PasswordSalt = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admins", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Colors",
                 columns: table => new
                 {
@@ -41,12 +26,15 @@ namespace WebbShop_API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    UserName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    First_Name = table.Column<string>(nullable: true),
-                    Last_Name = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true)
+                    Address = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<byte[]>(nullable: true),
+                    PasswordSalt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -145,13 +133,13 @@ namespace WebbShop_API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "Id", "Address", "Email", "First_Name", "Last_Name", "Password", "Phone" },
-                values: new object[] { 1, "vattholvaägen 5c", "lundbergarn2@hotmail.com", "Christoffer", "Lundberg", "password", "9739874" });
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Phone", "Role", "UserName" },
+                values: new object[] { 1, "vattholvaägen 5c", "lundbergarn2@hotmail.com", "Christoffer", "Lundberg", new byte[] { 46, 96, 15, 2, 176, 90, 63, 139, 19, 71, 121, 42, 251, 54, 49, 93, 235, 232, 255, 143, 6, 232, 172, 109, 39, 151, 247, 115, 116, 176, 71, 96, 117, 202, 84, 99, 105, 126, 12, 140, 207, 152, 105, 160, 117, 202, 99, 42, 122, 166, 105, 226, 154, 172, 30, 1, 212, 98, 58, 102, 159, 5, 214, 237 }, new byte[] { 199, 110, 83, 95, 26, 98, 33, 202, 147, 125, 254, 12, 231, 120, 198, 112, 136, 68, 148, 238, 99, 98, 38, 63, 154, 107, 101, 166, 119, 115, 75, 61, 163, 244, 15, 251, 28, 107, 240, 95, 150, 231, 223, 219, 100, 134, 206, 226, 148, 163, 144, 238, 49, 214, 183, 126, 120, 169, 162, 195, 176, 227, 223, 150, 10, 146, 254, 8, 153, 229, 89, 112, 196, 15, 17, 145, 230, 77, 207, 171, 47, 2, 35, 244, 151, 101, 55, 90, 251, 9, 130, 41, 35, 142, 9, 54, 86, 74, 121, 181, 120, 88, 60, 184, 105, 55, 210, 65, 13, 117, 220, 139, 190, 166, 166, 18, 228, 161, 9, 108, 170, 118, 69, 69, 96, 103, 234, 216 }, "9739874", "Customer", "lundberg" });
 
             migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "Id", "Address", "Email", "First_Name", "Last_Name", "Password", "Phone" },
-                values: new object[] { 2, "vattholvaägen 5c", "sara@hotmail.com", "Sara", "Larsson", "password", "9739874" });
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Phone", "Role", "UserName" },
+                values: new object[] { 2, "vattholvaägen 5c", "sara@hotmail.com", "Sara", "Larsson", new byte[] { 46, 96, 15, 2, 176, 90, 63, 139, 19, 71, 121, 42, 251, 54, 49, 93, 235, 232, 255, 143, 6, 232, 172, 109, 39, 151, 247, 115, 116, 176, 71, 96, 117, 202, 84, 99, 105, 126, 12, 140, 207, 152, 105, 160, 117, 202, 99, 42, 122, 166, 105, 226, 154, 172, 30, 1, 212, 98, 58, 102, 159, 5, 214, 237 }, new byte[] { 199, 110, 83, 95, 26, 98, 33, 202, 147, 125, 254, 12, 231, 120, 198, 112, 136, 68, 148, 238, 99, 98, 38, 63, 154, 107, 101, 166, 119, 115, 75, 61, 163, 244, 15, 251, 28, 107, 240, 95, 150, 231, 223, 219, 100, 134, 206, 226, 148, 163, 144, 238, 49, 214, 183, 126, 120, 169, 162, 195, 176, 227, 223, 150, 10, 146, 254, 8, 153, 229, 89, 112, 196, 15, 17, 145, 230, 77, 207, 171, 47, 2, 35, 244, 151, 101, 55, 90, 251, 9, 130, 41, 35, 142, 9, 54, 86, 74, 121, 181, 120, 88, 60, 184, 105, 55, 210, 65, 13, 117, 220, 139, 190, 166, 166, 18, 228, 161, 9, 108, 170, 118, 69, 69, 96, 103, 234, 216 }, "9739874", "Customer", "sara" });
 
             migrationBuilder.InsertData(
                 table: "Shoes",
@@ -201,12 +189,12 @@ namespace WebbShop_API.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "Order_Date" },
-                values: new object[] { 1, 1, new DateTime(2020, 1, 13, 17, 58, 16, 859, DateTimeKind.Local).AddTicks(8775) });
+                values: new object[] { 1, 1, new DateTime(2020, 1, 14, 14, 24, 7, 706, DateTimeKind.Local).AddTicks(8721) });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "Order_Date" },
-                values: new object[] { 2, 2, new DateTime(2020, 1, 13, 17, 58, 16, 862, DateTimeKind.Local).AddTicks(9102) });
+                values: new object[] { 2, 2, new DateTime(2020, 1, 14, 14, 24, 7, 709, DateTimeKind.Local).AddTicks(9189) });
 
             migrationBuilder.InsertData(
                 table: "Order_Rows",
@@ -241,9 +229,6 @@ namespace WebbShop_API.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Admins");
-
             migrationBuilder.DropTable(
                 name: "Colors");
 

@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Data;
 using WebbShop_API.Models;
 
 namespace WebbShop_API.Controllers
 {
+  [Authorize(Policy = "RequireCustomerRole")]
   [Route("api/[controller]")]
   [ApiController]
   public class CustomerController : ControllerBase
@@ -16,42 +18,68 @@ namespace WebbShop_API.Controllers
       _repo = repo;
     }
 
-    // GET api/blogs/5
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetCustomer(int id)
+    // GET api/customer/id
+    [HttpGet]
+    public async Task<IActionResult> GetCustomer()
     {
-      var blog = await _repo.GetCustomer(id);
+      string customerName = HttpContext.User.Identity.Name;
 
-      if (blog == null)
+      var customer = await _repo.GetCustomer(customerName);
+
+      if (customer == null)
       {
         return NotFound();
       }
 
-      return Ok(blog);
+      return Ok(customer);
     }
 
-
-    // POST api/blogs
+    // POST api/customer/orders
     [HttpPost]
-    public async Task<IActionResult> PostCustomer([FromBody] Customer newBlog)
+    public async Task<IActionResult> PostOrderRow([FromBody] Order_Rows OrderRow)
     {
-      _repo.Add(newBlog);
+      string customerName = HttpContext.User.Identity.Name;
+
+      var customer = await _repo.GetCustomer(customerName);
+
+      OrderRow.OrderId = customer.Id;
+
+      _repo.Add(OrderRow);
 
       var response = await _repo.SaveAll();
 
       if (response)
       {
-        return Created("/customer", newBlog);
+        return Created("/customer", OrderRow);
       }
 
       return NotFound();
     }
 
+
+    // POST api/customer
+    // [HttpPost]
+    // public async Task<IActionResult> PostCustomer([FromBody] Customer newBlog)
+    // {
+    //   _repo.Add(newBlog);
+
+    //   var response = await _repo.SaveAll();
+
+    //   if (response)
+    //   {
+    //     return Created("/customer", newBlog);
+    //   }
+
+    //   return NotFound();
+    // }
+
     // DELETE api/blogs/4
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-      Customer blogToRemove = await _repo.GetCustomer(id);
+      string customerName = HttpContext.User.Identity.Name;
+
+      Customer blogToRemove = await _repo.GetCustomer(customerName);
 
       if (blogToRemove == null)
       {
@@ -64,7 +92,7 @@ namespace WebbShop_API.Controllers
 
       if (response)
       {
-        return Ok("Removed blog " + blogToRemove.First_Name);
+        return Ok("Removed blog " + blogToRemove.FirstName);
       }
 
       return NotFound();
