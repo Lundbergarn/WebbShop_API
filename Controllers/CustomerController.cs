@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace WebbShop_API.Controllers
       _repo = repo;
     }
 
-    // GET api/customer/id
+    // GET api/customer
     [HttpGet]
     public async Task<IActionResult> GetCustomer()
     {
@@ -34,23 +35,36 @@ namespace WebbShop_API.Controllers
       return Ok(customer);
     }
 
-    // POST api/customer/orders
+    // POST api/customer
     [HttpPost]
-    public async Task<IActionResult> PostOrderRow([FromBody] Order_Rows OrderRow)
+    public async Task<IActionResult> PostOrderRow([FromBody] Order order)
     {
+      Console.WriteLine("Order reseived");
       string customerName = HttpContext.User.Identity.Name;
 
       var customer = await _repo.GetCustomer(customerName);
 
-      OrderRow.OrderId = customer.Id;
+      // Add the right CustomerID to Order
+      order.CustomerId = customer.Id;
+      order.Order_Date = DateTime.Now;
 
-      _repo.Add(OrderRow);
+      // Save order
+      // Return orderID
+      // Add orderID to orderRow
+
+      var OrderRes = _repo.Add(order);
+
+      foreach (Order_Rows row in order.Order_Rows)
+      {
+        row.OrderId = OrderRes.Id;
+        _repo.Add(row);
+      }
 
       var response = await _repo.SaveAll();
 
       if (response)
       {
-        return Created("/customer", OrderRow);
+        return Created("/customer", order);
       }
 
       return NotFound();

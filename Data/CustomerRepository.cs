@@ -12,9 +12,11 @@ namespace WebbShop_API.Data
     {
       this._context = context;
     }
-    public void Add<T>(T entity) where T : class
+    public T Add<T>(T entity) where T : class
     {
       _context.Add(entity);
+
+      return entity;
     }
 
     public void Delete<T>(T entity) where T : class
