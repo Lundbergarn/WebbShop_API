@@ -39,6 +39,7 @@ namespace WebbShop.API
       services.AddScoped<IAdminRepository, AdminRepository>();
       services.AddScoped<ICustomerRepository, CustomerRepository>();
       services.AddScoped<IShoesRepository, ShoesRepository>();
+      services.AddScoped<ISizeRepository, SizeRepository>();
 
       services.AddScoped<IAuthRepository, AuthRepository>();
 
