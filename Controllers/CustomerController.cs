@@ -39,14 +39,13 @@ namespace WebbShop_API.Controllers
     [HttpPost]
     public async Task<IActionResult> PostOrderRow([FromBody] Order order)
     {
-      Console.WriteLine("Order reseived");
       string customerName = HttpContext.User.Identity.Name;
 
       var customer = await _repo.GetCustomer(customerName);
 
       // Add the right CustomerID to Order
       order.CustomerId = customer.Id;
-      order.Order_Date = DateTime.Now;
+      order.OrderDate = DateTime.Now;
 
       // Save order
       // Return orderID
@@ -54,7 +53,7 @@ namespace WebbShop_API.Controllers
 
       var OrderRes = _repo.Add(order);
 
-      foreach (Order_Rows row in order.Order_Rows)
+      foreach (OrderRows row in order.OrderRows)
       {
         row.OrderId = OrderRes.Id;
         _repo.Add(row);
@@ -70,6 +69,33 @@ namespace WebbShop_API.Controllers
       return NotFound();
     }
 
+    // Put api/customer/id
+    [HttpPut]
+    public async Task<IActionResult> PostCustomerData([FromBody] Customer customerData)
+    {
+      string customerName = HttpContext.User.Identity.Name;
+
+      // Find customer
+      var customer = await _repo.GetCustomer(customerName);
+
+      // Add data to customer
+      customer.FirstName = customerData.FirstName;
+      customer.LastName = customerData.LastName;
+      customer.Phone = customerData.Phone;
+      customer.Address = customerData.Address;
+
+      // Add customer
+      _repo.Update(customer);
+
+      var response = await _repo.SaveAll();
+
+      if (response)
+      {
+        return Created("/customer", customer);
+      }
+
+      return NotFound();
+    }
 
     // POST api/customer
     // [HttpPost]

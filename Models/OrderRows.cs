@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace WebbShop_API.Models
 {
-  public class Order_Rows
+  public class OrderRows
   {
     public int Id { get; set; }
     public int Qty { get; set; }

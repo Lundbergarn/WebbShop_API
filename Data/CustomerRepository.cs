@@ -19,6 +19,13 @@ namespace WebbShop_API.Data
       return entity;
     }
 
+    public T Update<T>(T entity) where T : class
+    {
+      _context.Update(entity);
+
+      return entity;
+    }
+
     public void Delete<T>(T entity) where T : class
     {
       _context.Remove(entity);
@@ -28,13 +35,13 @@ namespace WebbShop_API.Data
     {
       var customer = await _context.Customers
         .Include(o => o.Order)
-          .ThenInclude(o => o.Order_Rows)
+          .ThenInclude(o => o.OrderRows)
         .ThenInclude(or => or.Shoe)
         // .Include(o => o.Order)
-        //   .ThenInclude(o => o.Order_Rows)
+        //   .ThenInclude(o => o.OrderRows)
         //     .ThenInclude(or => or.Color)
         // .Include(o => o.Order)
-        //   .ThenInclude(o => o.Order_Rows)
+        //   .ThenInclude(o => o.OrderRows)
         //     .ThenInclude(or => or.Size)
         .FirstOrDefaultAsync(b => b.UserName == name);
 

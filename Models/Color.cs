@@ -5,7 +5,7 @@ namespace WebbShop_API.Models
   public class Color
   {
     public int Id { get; set; }
-    public string Color_Description { get; set; }
+    public string ColorDescription { get; set; }
 
   }
 }

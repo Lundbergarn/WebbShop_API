@@ -7,7 +7,7 @@ namespace WebbShop_API.Models
   {
     public int Id { get; set; }
     [Column(TypeName = "decimal(4, 1)")]
-    public decimal Size_Description { get; set; }
+    public decimal SizeDescription { get; set; }
 
   }
 }

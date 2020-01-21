@@ -36,7 +36,8 @@ namespace WebbShop_API.Controllers
 
       var userToCreate = new Customer
       {
-        UserName = userForRegisterDto.Username
+        UserName = userForRegisterDto.Username,
+        Email = userForRegisterDto.Email
       };
 
       var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);

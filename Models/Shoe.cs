@@ -12,7 +12,7 @@ namespace WebbShop_API.Models
     public string Brand { get; set; }
     // [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
-    public string Product_Description { get; set; }
-    public string Image_Url { get; set; }
+    public string ProductDescription { get; set; }
+    public string ImageUrl { get; set; }
   }
 }

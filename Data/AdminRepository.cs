@@ -16,7 +16,7 @@ namespace WebbShop_API.Data
     public async Task<List<Order>> GetOrders()
     {
       var orders = await _context.Orders
-        .Include(o => o.Order_Rows)
+        .Include(o => o.OrderRows)
           .ThenInclude(or => or.Shoe)
         .ToListAsync();
 
