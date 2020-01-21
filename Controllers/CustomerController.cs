@@ -47,10 +47,6 @@ namespace WebbShop_API.Controllers
       order.CustomerId = customer.Id;
       order.OrderDate = DateTime.Now;
 
-      // Save order
-      // Return orderID
-      // Add orderID to orderRow
-
       var OrderRes = _repo.Add(order);
 
       foreach (OrderRows row in order.OrderRows)
@@ -96,22 +92,6 @@ namespace WebbShop_API.Controllers
 
       return NotFound();
     }
-
-    // POST api/customer
-    // [HttpPost]
-    // public async Task<IActionResult> PostCustomer([FromBody] Customer newBlog)
-    // {
-    //   _repo.Add(newBlog);
-
-    //   var response = await _repo.SaveAll();
-
-    //   if (response)
-    //   {
-    //     return Created("/customer", newBlog);
-    //   }
-
-    //   return NotFound();
-    // }
 
     // DELETE api/blogs/4
     [HttpDelete("{id}")]

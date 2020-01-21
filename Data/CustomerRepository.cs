@@ -36,13 +36,13 @@ namespace WebbShop_API.Data
       var customer = await _context.Customers
         .Include(o => o.Order)
           .ThenInclude(o => o.OrderRows)
-        .ThenInclude(or => or.Shoe)
-        // .Include(o => o.Order)
-        //   .ThenInclude(o => o.OrderRows)
-        //     .ThenInclude(or => or.Color)
-        // .Include(o => o.Order)
-        //   .ThenInclude(o => o.OrderRows)
-        //     .ThenInclude(or => or.Size)
+            .ThenInclude(or => or.Shoe)
+        .Include(o => o.Order)
+          .ThenInclude(o => o.OrderRows)
+            .ThenInclude(or => or.Color)
+        .Include(o => o.Order)
+          .ThenInclude(o => o.OrderRows)
+            .ThenInclude(or => or.Size)
         .FirstOrDefaultAsync(b => b.UserName == name);
 
       return customer;

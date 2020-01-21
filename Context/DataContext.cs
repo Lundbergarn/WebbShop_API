@@ -7,14 +7,14 @@ namespace WebbShop_API.Contexts
   public class DataContext : DbContext
   {
 
-    // public DbSet<Admin> Admins { get; set; }
+
     public DbSet<Color> Colors { get; set; }
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<OrderRows> Order_Rows { get; set; }
+    public DbSet<OrderRows> OrderRows { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Shoe> Shoes { get; set; }
     public DbSet<Size> Sizes { get; set; }
-    public DbSet<Value> Values { get; set; }
+
 
     // protected override void OnConfiguring(DbContextOptionsBuilder options)
     //  => options.UseSqlite("Data Source=myblogdb.db");
@@ -37,15 +37,6 @@ namespace WebbShop_API.Contexts
     {
       byte[] passwordHash, passwordSalt;
       CreatePasswordHash("password", out passwordHash, out passwordSalt);
-
-      // modelBuilder.Entity<Admin>().HasData(new Admin
-      // {
-      //   Id = 11111,
-      //   UserName = "admins",
-      //   Role = "Admin",
-      //   PasswordHash = passwordHash,
-      //   PasswordSalt = passwordSalt
-      // });
 
       modelBuilder.Entity<Customer>().HasData(new Customer
       {
@@ -87,11 +78,17 @@ namespace WebbShop_API.Contexts
         CustomerId = 2,
       });
 
+      // Order Rows
+      // Order Rows
+      // Order Rows
+      // Order Rows
       // Order Row 1
       modelBuilder.Entity<OrderRows>().HasData(new OrderRows
       {
         Id = 1,
         Qty = 1,
+        ColorId = 101,
+        SizeId = 101,
         ShoeId = 111,
         OrderId = 1
       });
@@ -100,6 +97,8 @@ namespace WebbShop_API.Contexts
       {
         Id = 2,
         Qty = 1,
+        ColorId = 101,
+        SizeId = 101,
         ShoeId = 111,
         OrderId = 2
       });
@@ -108,10 +107,92 @@ namespace WebbShop_API.Contexts
       {
         Id = 3,
         Qty = 1,
+        ColorId = 101,
+        SizeId = 101,
         ShoeId = 113,
         OrderId = 1
       });
 
+      // Color
+      // Color
+      // Color
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 101,
+        ColorDescription = "Black"
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 102,
+        ColorDescription = "White"
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 103,
+        ColorDescription = "Blue"
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 104,
+        ColorDescription = "Green"
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 105,
+        ColorDescription = "Grey"
+      });
+
+      // Sizes
+      // Sizes
+      // Sizes
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 101,
+        SizeDescription = 36.0M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 102,
+        SizeDescription = 36.5M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 103,
+        SizeDescription = 37.0M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 104,
+        SizeDescription = 37.5M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 105,
+        SizeDescription = 38.0M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 106,
+        SizeDescription = 38.5M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 107,
+        SizeDescription = 39.0M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 108,
+        SizeDescription = 39.5M
+      });
+      modelBuilder.Entity<Size>().HasData(new Size
+      {
+        Id = 109,
+        SizeDescription = 40.0M
+      });
+
+
+      // Shoes
       modelBuilder.Entity<Shoe>().HasData(new Shoe
       {
         Id = 111,

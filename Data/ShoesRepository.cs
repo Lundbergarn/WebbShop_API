@@ -23,6 +23,14 @@ namespace WebbShop_API.Data
       _context.Remove(entity);
     }
 
+
+    // var customer = await _context.Customers
+    //   .Include(o => o.Order)
+    //     .ThenInclude(o => o.OrderRows)
+    //   .ThenInclude(or => or.Shoe)
+    //   .FirstOrDefaultAsync(b => b.UserName == name);
+
+
     public async Task<Shoe> GetShoe(int id)
     {
       var shoe = await _context.Shoes
@@ -32,7 +40,8 @@ namespace WebbShop_API.Data
     }
     public async Task<List<Shoe>> GetShoes()
     {
-      var shoes = await _context.Shoes.ToListAsync();
+      var shoes = await _context.Shoes
+        .ToListAsync();
 
       return shoes;
     }
