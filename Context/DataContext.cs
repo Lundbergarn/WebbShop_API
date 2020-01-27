@@ -6,8 +6,6 @@ namespace WebbShop_API.Contexts
 {
   public class DataContext : DbContext
   {
-
-
     public DbSet<Color> Colors { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<OrderRows> OrderRows { get; set; }
@@ -16,10 +14,7 @@ namespace WebbShop_API.Contexts
     public DbSet<Size> Sizes { get; set; }
 
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder options)
-    //  => options.UseSqlite("Data Source=myblogdb.db");
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
 
     private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
     {
@@ -28,11 +23,9 @@ namespace WebbShop_API.Contexts
         passwordSalt = hmac.Key; /// setting password salt to the randomly generated key
         passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)); // gets password as a byte array
       }
-
     }
 
-
-
+    // Set up dummy data
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       byte[] passwordHash, passwordSalt;
@@ -81,8 +74,6 @@ namespace WebbShop_API.Contexts
       // Order Rows
       // Order Rows
       // Order Rows
-      // Order Rows
-      // Order Row 1
       modelBuilder.Entity<OrderRows>().HasData(new OrderRows
       {
         Id = 1,
@@ -119,27 +110,32 @@ namespace WebbShop_API.Contexts
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 101,
-        ColorDescription = "Svart"
+        ColorDescription = "Black"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 102,
-        ColorDescription = "Vit"
+        ColorDescription = "white"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 103,
-        ColorDescription = "Blå"
+        ColorDescription = "Blue"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 104,
-        ColorDescription = "Röd"
+        ColorDescription = "Red"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 105,
-        ColorDescription = "Grå"
+        ColorDescription = "Pink"
+      });
+      modelBuilder.Entity<Color>().HasData(new Color
+      {
+        Id = 106,
+        ColorDescription = "Grey"
       });
 
       // Sizes
@@ -193,6 +189,8 @@ namespace WebbShop_API.Contexts
 
 
       // Shoes
+      // Shoes
+      // Shoes
       modelBuilder.Entity<Shoe>().HasData(new Shoe
       {
         Id = 111,
@@ -212,7 +210,6 @@ namespace WebbShop_API.Contexts
         ProductDescription = "GEL-Pulse 11 från Asics är lätta löparskor för ett neutralt löpsteg. De passar för långdistanslöpning och är utformade för dig som föredrar att träna på landsväg. Skorna är designade med stötdämpande GEL i hälen för mjukare känsla, och är även försedda med Guidance Line-teknologi som hjälper foten hela vägen från hälisättning till frånskjut för en mer effektiv löpstil.",
         ImageUrl = "https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/284449_101_ASICS_M%20GEL-PULSE%2011.png",
       });
-
 
       modelBuilder.Entity<Shoe>().HasData(new Shoe
       {
