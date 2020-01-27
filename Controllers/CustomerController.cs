@@ -1,8 +1,10 @@
 using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Data;
+using WebbShop_API.Dtos;
 using WebbShop_API.Models;
 
 namespace WebbShop_API.Controllers
@@ -13,9 +15,11 @@ namespace WebbShop_API.Controllers
   public class CustomerController : ControllerBase
   {
     private readonly ICustomerRepository _repo;
+    private readonly IMapper _mapper;
 
-    public CustomerController(ICustomerRepository repo)
+    public CustomerController(ICustomerRepository repo, IMapper mapper)
     {
+      this._mapper = mapper;
       _repo = repo;
     }
 
@@ -27,12 +31,15 @@ namespace WebbShop_API.Controllers
 
       var customer = await _repo.GetCustomer(customerName);
 
+      // Mapp into
+      var customerToReturn = _mapper.Map<CustomerDto>(customer);
+
       if (customer == null)
       {
         return NotFound();
       }
 
-      return Ok(customer);
+      return Ok(customerToReturn);
     }
 
     // POST api/customer

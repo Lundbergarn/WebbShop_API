@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebbShop_API.Helpers;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace WebbShop.API
 {
@@ -36,6 +37,7 @@ namespace WebbShop.API
         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
       });
       services.AddCors();
+      services.AddAutoMapper(typeof(CustomerRepository).Assembly);
       services.AddScoped<IAdminRepository, AdminRepository>();
       services.AddScoped<ICustomerRepository, CustomerRepository>();
       services.AddScoped<IShoesRepository, ShoesRepository>();

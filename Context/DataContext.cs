@@ -119,27 +119,27 @@ namespace WebbShop_API.Contexts
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 101,
-        ColorDescription = "Black"
+        ColorDescription = "Svart"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 102,
-        ColorDescription = "White"
+        ColorDescription = "Vit"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 103,
-        ColorDescription = "Blue"
+        ColorDescription = "Blå"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 104,
-        ColorDescription = "Green"
+        ColorDescription = "Röd"
       });
       modelBuilder.Entity<Color>().HasData(new Color
       {
         Id = 105,
-        ColorDescription = "Grey"
+        ColorDescription = "Grå"
       });
 
       // Sizes
