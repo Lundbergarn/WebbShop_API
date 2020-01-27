@@ -7,36 +7,36 @@ namespace WebbShop_API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class SizeController : ControllerBase
+  public class ColorController : ControllerBase
   {
-    private readonly ISizeRepository _repo;
+    private readonly IColorRepository _repo;
 
-    public SizeController(ISizeRepository repo)
+    public ColorController(IColorRepository repo)
     {
       _repo = repo;
     }
 
     // Get api/shoe
     [HttpGet]
-    public async Task<IActionResult> GetSizes()
+    public async Task<IActionResult> GetColors()
     {
-      var sizes = await _repo.GetSizes();
+      var colors = await _repo.GetColors();
       // HTTP 200 response Ok
-      return Ok(sizes);
+      return Ok(colors);
     }
 
     // GET api/shoe/5
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetSize(int id)
+    public async Task<IActionResult> GetColor(int id)
     {
-      var size = await _repo.GetSize(id);
+      var color = await _repo.GetColor(id);
 
-      if (size == null)
+      if (color == null)
       {
         return NotFound();
       }
 
-      return Ok(size);
+      return Ok(color);
     }
 
   }

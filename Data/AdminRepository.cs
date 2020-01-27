@@ -18,6 +18,8 @@ namespace WebbShop_API.Data
       var orders = await _context.Orders
         .Include(o => o.OrderRows)
           .ThenInclude(or => or.Shoe)
+        .Include(o => o.OrderRows)
+          .ThenInclude(or => or.Size)
         .ToListAsync();
 
       return orders;
