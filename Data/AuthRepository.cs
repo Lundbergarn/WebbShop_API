@@ -19,7 +19,7 @@ namespace WebbShop_API.Data
     {
       var user = await _context.Customers.FirstOrDefaultAsync(x => x.UserName == username); //will return matching username or null if no match
 
-      if (username == null)
+      if (user == null)
         return null;
 
       if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) // returns true or false depending if password macthes

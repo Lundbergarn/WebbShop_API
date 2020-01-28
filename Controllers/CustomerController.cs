@@ -100,26 +100,26 @@ namespace WebbShop_API.Controllers
       return NotFound();
     }
 
-    // DELETE api/blogs/4
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    // DELETE api/customer/
+    [HttpDelete]
+    public async Task<IActionResult> Delete()
     {
       string customerName = HttpContext.User.Identity.Name;
 
-      Customer blogToRemove = await _repo.GetCustomer(customerName);
+      Customer customerToRemove = await _repo.GetCustomer(customerName);
 
-      if (blogToRemove == null)
+      if (customerToRemove == null)
       {
         return NotFound();
       }
 
-      _repo.Delete(blogToRemove);
+      _repo.Delete(customerToRemove);
 
       var response = await _repo.SaveAll();
 
       if (response)
       {
-        return Ok("Removed blog " + blogToRemove.FirstName);
+        return Ok();
       }
 
       return NotFound();
