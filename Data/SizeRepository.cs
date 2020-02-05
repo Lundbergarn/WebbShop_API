@@ -14,21 +14,22 @@ namespace WebbShop_API.Data
       this._context = context;
     }
 
+
     public async Task<Size> GetSize(int id)
     {
-      var size = await _context.Sizes
+      Size size = await _context.Sizes
         .FirstOrDefaultAsync(b => b.Id == id);
 
       return size;
     }
+
     public async Task<List<Size>> GetSizes()
     {
-      var sizes = await _context.Sizes
+      List<Size> sizes = await _context.Sizes
         .ToListAsync();
 
       return sizes;
     }
-
 
     public async Task<bool> SaveAll()
     {

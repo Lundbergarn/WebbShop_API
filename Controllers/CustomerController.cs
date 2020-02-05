@@ -29,7 +29,7 @@ namespace WebbShop_API.Controllers
     {
       string customerName = HttpContext.User.Identity.Name;
 
-      var customer = await _repo.GetCustomer(customerName);
+      Customer customer = await _repo.GetCustomer(customerName);
 
       // Mapp into
       var customerToReturn = _mapper.Map<CustomerDto>(customer);
@@ -48,7 +48,7 @@ namespace WebbShop_API.Controllers
     {
       string customerName = HttpContext.User.Identity.Name;
 
-      var customer = await _repo.GetCustomer(customerName);
+      Customer customer = await _repo.GetCustomer(customerName);
 
       // Add the right CustomerID to Order
       order.CustomerId = customer.Id;
@@ -79,7 +79,7 @@ namespace WebbShop_API.Controllers
       string customerName = HttpContext.User.Identity.Name;
 
       // Find customer
-      var customer = await _repo.GetCustomer(customerName);
+      Customer customer = await _repo.GetCustomer(customerName);
 
       // Add data to customer
       customer.FirstName = customerData.FirstName;

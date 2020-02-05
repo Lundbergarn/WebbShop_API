@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Data;
@@ -20,7 +21,7 @@ namespace WebbShop_API.Controllers
     [HttpGet]
     public async Task<IActionResult> GetSizes()
     {
-      var sizes = await _repo.GetSizes();
+      List<Size> sizes = await _repo.GetSizes();
       // HTTP 200 response Ok
       return Ok(sizes);
     }
@@ -29,7 +30,7 @@ namespace WebbShop_API.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> GetSize(int id)
     {
-      var size = await _repo.GetSize(id);
+      Size size = await _repo.GetSize(id);
 
       if (size == null)
       {

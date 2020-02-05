@@ -16,14 +16,14 @@ namespace WebbShop_API.Data
 
     public async Task<Color> GetColor(int id)
     {
-      var color = await _context.Colors
+      Color color = await _context.Colors
         .FirstOrDefaultAsync(b => b.Id == id);
 
       return color;
     }
     public async Task<List<Color>> GetColors()
     {
-      var colors = await _context.Colors
+      List<Color> colors = await _context.Colors
         .ToListAsync();
 
       return colors;

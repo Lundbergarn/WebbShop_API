@@ -33,7 +33,7 @@ namespace WebbShop_API.Data
 
     public async Task<Customer> GetCustomer(string name)
     {
-      var customer = await _context.Customers
+      Customer customer = await _context.Customers
         .Include(o => o.Order)
           .ThenInclude(o => o.OrderRows)
             .ThenInclude(or => or.Shoe)

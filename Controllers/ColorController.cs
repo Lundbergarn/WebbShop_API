@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Data;
@@ -20,7 +21,7 @@ namespace WebbShop_API.Controllers
     [HttpGet]
     public async Task<IActionResult> GetColors()
     {
-      var colors = await _repo.GetColors();
+      List<Color> colors = await _repo.GetColors();
       // HTTP 200 response Ok
       return Ok(colors);
     }
@@ -29,7 +30,7 @@ namespace WebbShop_API.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> GetColor(int id)
     {
-      var color = await _repo.GetColor(id);
+      Color color = await _repo.GetColor(id);
 
       if (color == null)
       {

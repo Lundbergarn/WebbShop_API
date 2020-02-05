@@ -3,11 +3,10 @@ using WebbShop_API.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Models;
+using System.Collections.Generic;
 
 namespace WebbShop_API.Controllers
 {
-  // [Authorize(Policy = "RequireAdminRole")]
-  // [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class AdminController : ControllerBase
@@ -19,10 +18,11 @@ namespace WebbShop_API.Controllers
       _repo = repo;
     }
 
+    // GET api/admin
     [HttpGet]
     public async Task<IActionResult> GetOrders()
     {
-      var orders = await _repo.GetOrders();
+      List<Order> orders = await _repo.GetOrders();
 
       if (orders == null)
       {

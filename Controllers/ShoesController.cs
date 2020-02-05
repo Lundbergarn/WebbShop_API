@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebbShop_API.Data;
@@ -20,7 +21,7 @@ namespace WebbShop_API.Controllers
     [HttpGet]
     public async Task<IActionResult> GetShoes()
     {
-      var values = await _repo.GetShoes();
+      List<Shoe> values = await _repo.GetShoes();
       // HTTP 200 response Ok
       return Ok(values);
     }
@@ -29,7 +30,7 @@ namespace WebbShop_API.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> GetShoe(int id)
     {
-      var shoe = await _repo.GetShoe(id);
+      Shoe shoe = await _repo.GetShoe(id);
 
       if (shoe == null)
       {

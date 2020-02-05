@@ -23,29 +23,20 @@ namespace WebbShop_API.Data
       _context.Remove(entity);
     }
 
-
-    // var customer = await _context.Customers
-    //   .Include(o => o.Order)
-    //     .ThenInclude(o => o.OrderRows)
-    //   .ThenInclude(or => or.Shoe)
-    //   .FirstOrDefaultAsync(b => b.UserName == name);
-
-
     public async Task<Shoe> GetShoe(int id)
     {
-      var shoe = await _context.Shoes
+      Shoe shoe = await _context.Shoes
         .FirstOrDefaultAsync(b => b.Id == id);
 
       return shoe;
     }
     public async Task<List<Shoe>> GetShoes()
     {
-      var shoes = await _context.Shoes
+      List<Shoe> shoes = await _context.Shoes
         .ToListAsync();
 
       return shoes;
     }
-
 
     public async Task<bool> SaveAll()
     {
